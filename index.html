@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ayaan Monappa Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Engineering portfolio of Ayaan Monappa, Computer Engineering at Georgia Tech: an autonomous boat, a posture wearable, an iOS app, ML research and a RISC-V search algorithm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,700..900;1,100..125,700..900&family=Barlow+Condensed:wght@500;600;700&family=Kalam:wght@700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout concept: the site is a drawing set on his blue paper. The home page is the cover sheet and sheet index;
+   each project is one sheet that opens with an engineering title block, then sections marked with his tape labels. */
+:root {
+  color-scheme: light;
+  --paper: #4c7d9c;          /* his blue paper, slightly deepened for legible white text */
+  --paper-deep: #3c6987;     /* panels and wells */
+  --ink: #0c1a25;            /* headings, like his black titles */
+  --chalk: #ffffff;          /* body text on paper */
+  --mist: #dbe7f0;           /* secondary text */
+  --navy: #0a3a5f;           /* his role-line blue */
+  --salmon: #ff968d;         /* tape label, section */
+  --tape: #feae00;           /* tape label, part / emphasis */
+  --red: #b51700;            /* hand annotations on light figures */
+  --rule: rgba(255, 255, 255, .55);
+  --rule-soft: rgba(255, 255, 255, .22);
+  --sheet: #f4f6f3;          /* light figure ground */
+  --bar-1: #d6c39a; --bar-2: #bfe6e0; --bar-3: #e07a52; --bar-4: #6b6458;
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Serif 4", "Times New Roman", Times, serif;
+  --util: "Barlow Condensed", "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  --hand: "Kalam", "Comic Neue", cursive;
+
+  --step--1: .875rem; --step-0: 1.0625rem; --step-1: 1.25rem; --step-2: 1.6rem; --step-3: 2.2rem; --step-4: clamp(2.4rem, 5.4vw, 3.6rem); --step-5: clamp(3rem, 9vw, 6.2rem);
+  --max: 1140px;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; color: var(--chalk); font: 400 var(--step-0)/1.6 var(--body);
+  background-color: var(--paper);
+  background-image: linear-gradient(rgba(14, 40, 62, .2), rgba(14, 40, 62, .2)), url("assets/paper.webp");
+  background-size: auto, 600px 600px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper-deep); }
+a { color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+:focus-visible { outline: 3px solid var(--tape); outline-offset: 3px; }
+.wrap { max-width: var(--max); margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+/* ---------- top bar ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(60, 105, 135, .92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule-soft); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+.top .me { font: italic 800 1.05rem/1 var(--display); font-stretch: 110%; color: var(--ink); text-decoration: none; }
+.top nav { display: flex; gap: 18px; flex-wrap: wrap; font: 600 1.05rem/1 var(--util); }
+.top nav a { text-decoration: none; color: var(--chalk); }
+.top nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- shared pieces ---------- */
+.bar { display: grid; grid-template-columns: 1fr 1.5fr 2fr 2.5fr; height: 6px; width: min(420px, 70%); margin-block: 14px 18px; }
+.bar i:nth-child(1) { background: var(--bar-1); } .bar i:nth-child(2) { background: var(--bar-2); } .bar i:nth-child(3) { background: var(--bar-3); } .bar i:nth-child(4) { background: var(--bar-4); }
+.tape { display: inline-block; margin: 0; padding: 7px 22px 8px; font: 700 1.05rem/1.1 var(--display); font-stretch: 105%; color: var(--chalk); background: var(--salmon); transform: rotate(-1.2deg); box-shadow: 0 2px 0 rgba(0, 0, 0, .12); }
+.tape.part { background: var(--tape); color: var(--ink); transform: rotate(.8deg); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+.chips li { font: 600 .95rem/1 var(--util); letter-spacing: .02em; padding: 5px 9px 6px; border: 1px solid var(--rule); color: var(--chalk); }
+.hand { font: 700 1.15rem/1.15 var(--hand); color: var(--red); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 4px; box-shadow: 0 3px 0 rgba(12, 26, 37, .35); font: 700 1.1rem/1 var(--util); letter-spacing: .02em; color: var(--ink); background: var(--tape); text-decoration: none; border: 0; cursor: pointer; }
+.btn.ghost { background: rgba(255, 255, 255, .14); color: var(--chalk); box-shadow: inset 0 0 0 1.5px var(--rule), 0 3px 0 rgba(12, 26, 37, .35); }
+.btn.ghost:hover { background: rgba(255, 255, 255, .26); }
+.btn:hover { filter: brightness(1.06); }
+.zoom { display: block; cursor: zoom-in; position: relative; }
+.zoom::after { content: "Click to enlarge"; position: absolute; right: 8px; bottom: 8px; padding: 5px 9px 6px; font: 600 .85rem/1 var(--util); color: var(--ink); background: var(--tape); border-radius: 3px; box-shadow: 0 2px 0 rgba(12, 26, 37, .35); opacity: .92; pointer-events: none; }
+.zoom:hover::after, .zoom:focus-visible::after { opacity: 1; }
+.card a::after { content: none; }
+figcaption, .cap { font: 500 1rem/1.35 var(--util); color: var(--mist); margin-top: 8px; }
+
+/* ---------- home ---------- */
+.cover { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 56px 40px; }
+.cover h1 { margin: 0; font: 900 var(--step-5)/.9 var(--display); font-stretch: 112%; color: var(--ink); letter-spacing: -.01em; }
+.who { font: italic 400 1.2rem/1.45 var(--body); color: var(--ink); margin: 0 0 22px; }
+.lede { max-width: 40ch; font-size: var(--step-1); line-height: 1.5; margin: 0 0 18px; }
+.cover .links { display: flex; gap: 10px; flex-wrap: wrap; }
+.portrait { justify-self: center; width: min(300px, 80%); aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 6px rgba(255, 255, 255, .15); }
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+
+.index-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-top: 24px; }
+.index-head h2 { margin: 0; font: italic 800 var(--step-3)/1 var(--display); font-stretch: 108%; color: var(--ink); }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button { font: 600 1.02rem/1 var(--util); padding: 9px 14px 10px; color: var(--chalk); background: rgba(255, 255, 255, .14); border: 1.5px solid var(--rule); border-radius: 4px; cursor: pointer; box-shadow: 0 3px 0 rgba(12, 26, 37, .35); }
+.filters button:hover { background: rgba(255, 255, 255, .26); }
+.filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; padding: 26px 0 72px; margin: 0; list-style: none; }
+.card a { display: flex; flex-direction: column; height: 100%; text-decoration: none; border: 1.5px solid var(--rule); background: rgba(255, 255, 255, .05); transition: transform .18s ease, border-color .18s ease; }
+.card a:hover { transform: translateY(-3px); border-color: var(--tape); }
+.card .thumb { aspect-ratio: 4 / 3; overflow: hidden; background: var(--sheet); border-bottom: 1.5px solid var(--rule); }
+.card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.card .thumb.contain img { object-fit: contain; padding: 10px; }
+.card .thumb.dark { background: var(--paper-deep); }
+.card .body { padding: 14px 16px 18px; display: grid; gap: 8px; flex: 1; align-content: start; }
+.card .no { font: 700 1rem/1 var(--util); color: var(--mist); }
+.card h3 { margin: 0; font: italic 800 1.35rem/1.15 var(--display); font-stretch: 104%; color: var(--ink); text-wrap: balance; }
+.card .org { font: 500 1.02rem/1.3 var(--util); color: var(--chalk); }
+.card .hook { font-size: .98rem; line-height: 1.45; color: var(--mist); margin: 0; }
+.card[hidden] { display: none; }
+
+/* ---------- project sheet ---------- */
+.sheet { padding-block: 34px 80px; }
+.back { font: 600 1.05rem/1 var(--util); color: var(--chalk); text-decoration: none; display: inline-block; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+.tb { display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(0, 300px); border: 1.5px solid var(--rule); }
+.tb > * { padding: 14px 16px; min-width: 0; }
+.tb .sheetno { border-right: 1.5px solid var(--rule); display: grid; align-content: space-between; gap: 8px; }
+.tb .sheetno small { font: 600 .9rem/1 var(--util); color: var(--mist); }
+.tb .sheetno b { font: 700 2.6rem/1 var(--util); color: var(--chalk); }
+.tb h1 { margin: 0; font: italic 800 var(--step-4)/1.02 var(--display); font-stretch: 106%; color: var(--ink); text-wrap: balance; }
+.tb .role { margin: 8px 0 0; font: 700 1.08rem/1.3 var(--display); color: var(--navy); }
+.tb .meta { border-left: 1.5px solid var(--rule); display: grid; gap: 12px; align-content: start; }
+.tb .meta small { display: block; font: 600 .9rem/1 var(--util); color: var(--mist); margin-bottom: 6px; }
+.tb .meta .btn { font-size: 1rem; padding: 8px 12px; }
+
+.glance { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1.5px solid var(--rule); border-top: 0; margin: 0 0 8px; }
+.glance div { padding: 12px 16px 14px; border-right: 1.5px solid var(--rule-soft); }
+.glance div:last-child { border-right: 0; }
+.glance dt { font: 600 .92rem/1 var(--util); color: var(--mist); margin-bottom: 6px; }
+.glance dd { margin: 0; font: 600 1.12rem/1.3 var(--util); color: var(--chalk); }
+
+.sec { margin-top: 56px; display: grid; gap: 22px; }
+.sec > header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.sec > header p { margin: 0; font: 500 1.05rem/1.3 var(--util); color: var(--mist); }
+.prose { max-width: 68ch; }
+.prose p { margin: 0 0 14px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.split.wide-left { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.fig { margin: 0; }
+.fig .ground { background: var(--sheet); padding: 10px; }
+.callout { border-left: 4px solid var(--tape); padding: 4px 0 4px 16px; max-width: 64ch; }
+.callout.good { font: italic 600 1.15rem/1.45 var(--body); color: #fff6b0; }
+.note { font: italic 400 1rem/1.5 var(--body); color: var(--mist); max-width: 64ch; margin: 0; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+.stats div { border-left: 4px solid var(--tape); padding: 4px 16px 6px; }
+.stats b { display: block; font: 700 clamp(2rem, 4.5vw, 2.9rem)/1.05 var(--util); color: var(--chalk); font-variant-numeric: tabular-nums; }
+.stats span { font: 500 1rem/1.3 var(--util); color: var(--mist); }
+.seq { display: grid; gap: 0; counter-reset: s; }
+.seq li { list-style: none; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 12px; padding: 14px 0; border-top: 1px solid var(--rule-soft); }
+.seq li:first-child { border-top: 0; }
+.seq .n { grid-row: span 2; font: 500 2.4rem/1 var(--display); color: var(--tape); }
+.seq b { font: 700 1.15rem/1.25 var(--display); color: var(--chalk); }
+.seq p { margin: 0; color: var(--mist); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 72px; border-top: 2px solid var(--ink); padding-top: 18px; }
+.pager a { text-decoration: none; display: grid; gap: 4px; }
+.pager a:last-child { text-align: right; }
+.pager small { font: 600 .95rem/1 var(--util); color: var(--mist); }
+.pager b { font: italic 800 1.25rem/1.2 var(--display); color: var(--ink); }
+.pager a:hover b { text-decoration: underline; }
+
+/* tabs (shared) */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tabs button { font: 600 1.05rem/1 var(--util); padding: 10px 16px 11px; color: var(--chalk); background: rgba(255, 255, 255, .14); border: 1.5px solid var(--rule); border-radius: 4px; cursor: pointer; box-shadow: 0 3px 0 rgba(12, 26, 37, .35); }
+.tabs button:hover { background: rgba(255, 255, 255, .26); }
+.tabs button:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(12, 26, 37, .35); }
+.tabs button[aria-selected="true"] { background: var(--tape); border-color: var(--ink); color: var(--ink); }
+
+/* USV diagram */
+.stack { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start; }
+.stack-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.stack-canvas { position: relative; min-width: 720px; }
+.stack-canvas img { width: 100%; }
+.swipe { display: none; }
+@media (max-width: 760px) { .swipe { display: block; } }
+.hot { position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--tape); color: var(--ink); font: 700 .95rem/1 var(--util); cursor: pointer; box-shadow: 0 0 0 4px rgba(254, 174, 0, .28); }
+.hot[aria-pressed="true"] { background: var(--ink); color: var(--tape); border-color: var(--tape); animation: none; }
+.hot { animation: pulse 2.2s ease-in-out infinite; }
+.hot:hover { transform: translate(-50%, -50%) scale(1.15); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(254, 174, 0, .28); } 50% { box-shadow: 0 0 0 10px rgba(254, 174, 0, .08); } }
+.panel { border: 1.5px solid var(--rule); padding: 16px 18px 18px; background: rgba(12, 26, 37, .18); min-height: 180px; }
+.panel small { font: 600 .92rem/1 var(--util); color: var(--mist); }
+.panel h3 { margin: 6px 0 8px; font: italic 800 1.3rem/1.15 var(--display); color: var(--chalk); }
+.panel p { margin: 0; font-size: 1rem; }
+.mount { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+.mount figure { margin: 0; position: relative; }
+.mount .ground { background: var(--paper-deep); }
+.mount .ground img { width: 100%; aspect-ratio: 4 / 5; object-fit: contain; }
+.mount .photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.mount .hand { position: absolute; top: 12px; left: 14px; color: var(--tape); }
+.mount .hand.r { left: auto; right: 14px; color: var(--chalk); text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
+.cad { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.cad .ground { aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 0; overflow: hidden; }
+.cad .ground img { width: 100%; height: 100%; object-fit: cover; }
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; padding: 0; margin: 0; list-style: none; }
+.skills li { padding-left: 16px; position: relative; }
+.skills li::before { content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 2px; background: var(--tape); }
+
+/* confusion matrix */
+.cm { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; align-items: start; border: 1.5px solid var(--rule); padding: 20px; background: rgba(12, 26, 37, .18); }
+.cm-grid { display: grid; grid-template-columns: 28px 52px repeat(3, 72px); grid-template-rows: 24px repeat(3, 64px) 28px; gap: 4px; }
+.cm-grid .ax { font: 600 .9rem/1 var(--util); color: var(--mist); display: grid; place-items: center; }
+.cm-grid .yl { grid-column: 1; grid-row: 2 / span 3; writing-mode: vertical-rl; transform: rotate(180deg); }
+.cm-grid .xl { grid-column: 3 / span 3; grid-row: 5; }
+.cm-grid .cell { display: grid; place-items: center; font: 700 1.15rem/1 var(--util); font-variant-numeric: tabular-nums; color: var(--ink); }
+.cm-side h3 { margin: 0; font: 700 3rem/1 var(--util); color: var(--tape); font-variant-numeric: tabular-nums; }
+.cm-side p { margin: 6px 0 16px; color: var(--mist); }
+.bars { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.bars li { display: grid; grid-template-columns: 150px minmax(0, 1fr) 56px; gap: 10px; align-items: center; font: 500 1rem/1 var(--util); }
+.bars .track { height: 10px; background: rgba(255, 255, 255, .15); }
+.bars .fill { display: block; height: 100%; background: var(--mist); }
+.bars li.on .fill { background: var(--tape); }
+.bars li span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.wide-scroll { overflow-x: auto; }
+.wide-scroll .ground { min-width: 760px; }
+
+/* phones */
+.flowchips { display: flex; gap: 6px; flex-wrap: wrap; }
+.phones { display: grid; grid-auto-flow: column; grid-auto-columns: 210px; gap: 26px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 2px 18px; margin: 0; list-style: none; }
+.phones li { scroll-snap-align: start; display: grid; gap: 10px; align-content: start; }
+.phones img { width: 100%; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .28)); }
+.phones .grp { font: 600 .9rem/1 var(--util); color: var(--mist); }
+.phones .hand { color: #fff6b0; font-size: 1.05rem; }
+.planpane .ground img { width: 100%; }
+.flows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.flows .ground { display: grid; place-items: center; }
+.ngrok { position: relative; }
+.ngrok .labels { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.ngrok .labels .hand { color: #fff6b0; }
+.repo-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center; border: 1.5px dashed var(--rule); padding: 20px 22px; }
+.repo-cta .shout { font: italic 900 clamp(1.9rem, 4.6vw, 3rem)/1 var(--display); color: var(--salmon); transform: rotate(-6deg); white-space: nowrap; }
+.repo-cta .btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+
+/* single cell */
+.pipe { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; }
+.pipe li { background: var(--sheet); color: var(--ink); padding: 14px 14px 16px; position: relative; font-size: .98rem; line-height: 1.35; }
+.pipe li + li { border-left: 2px dashed #9fb4c4; }
+.pipe b { display: block; font: 700 1.1rem/1.1 var(--display); margin-bottom: 6px; text-decoration: underline; text-underline-offset: 3px; }
+.violins { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px; align-items: start; }
+.violins .ground { padding: 6px; }
+.methods { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; align-items: center; }
+.methods .ground { max-width: 420px; }
+.methods h3 { margin: 0 0 6px; font: italic 800 1.4rem/1.1 var(--display); color: var(--chalk); }
+.methods .used { font: 700 1rem/1 var(--util); color: var(--tape); }
+.findings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 32px; }
+.findings p { margin: 0; }
+
+/* george */
+.george { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.george .ground { padding: 0; }
+.george .seq li { cursor: default; }
+
+/* posture */
+.posture { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 28px; align-items: start; }
+.posture .photo img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.parts { background: var(--tape); color: var(--ink); padding: 20px 22px; }
+.parts h3 { margin: 0 0 12px; font: 400 1.5rem/1.1 var(--body); text-align: center; text-decoration: underline; text-underline-offset: 4px; }
+.parts ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.parts button { all: unset; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; box-sizing: border-box; padding: 9px 12px; font: italic 400 1.05rem/1.35 var(--body); cursor: pointer; background: rgba(255, 255, 255, .45); border: 1.5px solid rgba(12, 26, 37, .45); border-radius: 4px; box-shadow: 0 3px 0 rgba(12, 26, 37, .3); }
+.parts button::after { content: "Show"; font: 700 .9rem/1 var(--util); font-style: normal; padding: 5px 8px; border: 1.5px solid var(--ink); border-radius: 3px; }
+.parts button[aria-pressed="true"]::after { content: "Shown"; background: var(--ink); color: var(--tape); }
+.parts button b { font-style: normal; font-weight: 600; }
+.parts button:hover { background: rgba(255, 255, 255, .7); }
+.parts button[aria-pressed="true"] { background: #fff; }
+.parts button:focus-visible { outline: 3px solid var(--ink); outline-offset: -3px; }
+.parts small { display: block; margin-top: 10px; font: 500 .95rem/1.3 var(--util); }
+.schem { position: relative; background: var(--sheet); overflow: hidden; }
+.schem img { width: 100%; }
+.schem .zone { position: absolute; border: 2.5px solid transparent; border-radius: 6px; transition: border-color .15s, background-color .15s; pointer-events: none; }
+.schem .zone.on { border-color: var(--red); background: rgba(181, 23, 0, .08); }
+.schem .zone span { position: absolute; left: 0; top: 100%; transform: translateY(4px); background: var(--sheet); padding: 0 4px; font: 700 1rem/1 var(--hand); color: var(--red); white-space: nowrap; opacity: 0; }
+.schem .zone.on span { opacity: 1; }
+.schem .zone[data-zone="npn"] span { top: auto; bottom: 100%; transform: translateY(-4px); }
+
+/* lightbox */
+dialog.lb { padding: 0; border: 0; background: transparent; max-width: 96vw; max-height: 92vh; }
+dialog.lb::backdrop { background: rgba(8, 20, 30, .86); }
+dialog.lb img { max-width: 96vw; max-height: 84vh; object-fit: contain; background: var(--sheet); }
+dialog.lb .lb-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; color: var(--chalk); font: 500 1rem/1.3 var(--util); }
+dialog.lb button { font: 700 1rem/1 var(--util); color: var(--ink); background: var(--tape); border: 0; padding: 8px 14px; cursor: pointer; }
+
+footer.foot { border-top: 1px solid var(--rule-soft); }
+footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 22px 34px; font: 500 1rem/1.3 var(--util); color: var(--mist); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stack { grid-template-columns: minmax(0, 1fr); }
+  .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .glance div:nth-child(2) { border-right: 0; }
+  .glance div:nth-child(-n+2) { border-bottom: 1.5px solid var(--rule-soft); }
+  .violins { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .violins .result { grid-column: 1 / -1; }
+  .pipe { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 2px; }
+  .pipe li:nth-child(4) { border-left: 0; }
+  .cm { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .cover { grid-template-columns: minmax(0, 1fr); padding-top: 36px; }
+  .portrait { order: -1; justify-self: start; width: 150px; }
+  .tb { grid-template-columns: minmax(0, 1fr); }
+  .tb .sheetno { border-right: 0; border-bottom: 1.5px solid var(--rule); display: flex; align-items: baseline; justify-content: space-between; }
+  .tb .sheetno b { font-size: 1.6rem; }
+  .tb .meta { border-left: 0; border-top: 1.5px solid var(--rule); }
+  .split, .split.wide-left, .mount, .george, .posture, .methods, .findings { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 18px; }
+  .repo-cta { grid-template-columns: minmax(0, 1fr); }
+  .repo-cta .shout { transform: rotate(-4deg); white-space: normal; }
+  .pipe { grid-template-columns: minmax(0, 1fr); }
+  .pipe li + li { border-left: 0; border-top: 2px dashed #9fb4c4; }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .bars li { grid-template-columns: 120px minmax(0, 1fr) 50px; }
+}
+@media (max-width: 560px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .glance { grid-template-columns: minmax(0, 1fr); }
+  .glance div { border-right: 0; border-bottom: 1.5px solid var(--rule-soft); }
+  .glance div:last-child { border-bottom: 0; }
+  .violins, .cad, .flows { grid-template-columns: minmax(0, 1fr); }
+  .cm-grid { grid-template-columns: 24px 44px repeat(3, minmax(0, 64px)); grid-template-rows: 24px repeat(3, 56px) 28px; }
+  .top nav { gap: 12px; }
+  .pager b { font-size: 1.05rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="me" href="#work">Ayaan Monappa</a>
+    <nav aria-label="Site">
+      <a href="#work">Projects</a>
+      <a href="assets/Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://www.linkedin.com/in/ayaan-monappa-2b86782ab/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ayaanmonappa" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ======================= HOME ======================= -->
+<section class="view" id="view-home" data-view="home">
+  <div class="wrap">
+    <div class="cover">
+      <div>
+        <h1>ENGINEERING<br>PORTFOLIO</h1>
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <p class="who">Ayaan Monappa<br>B.S. Computer Engineering<br>Georgia Institute of Technology</p>
+        <div class="links">
+          <a class="btn" href="#work">See the projects</a>
+          <a class="btn" href="assets/Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+          <a class="btn ghost" href="https://github.com/ayaanmonappa" target="_blank" rel="noopener">GitHub: ayaanmonappa</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/ayaan-monappa-2b86782ab/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="portrait"><img src="assets/headshot.webp" alt="Portrait of Ayaan Monappa" width="700" height="1047"></div>
+    </div>
+
+    <div class="index-head" id="work">
+      <h2>Projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="hardware" aria-pressed="false">Hardware</button>
+        <button type="button" data-f="software" aria-pressed="false">Software</button>
+        <button type="button" data-f="ml" aria-pressed="false">Machine learning</button>
+        <button type="button" data-f="research" aria-pressed="false">Research</button>
+      </div>
+    </div>
+    <ul class="cards">
+      <li class="card" data-cat="hardware software"><a href="#usv">
+        <div class="thumb"><img src="assets/usv-built.webp" alt="The sensor mount on the boat, with Wi-Fi gateway, LIDAR and dome camera" loading="lazy" style="object-position:50% 30%"></div>
+        <div class="body"><span class="no">01</span><h3>Unmanned Surface Vehicle</h3><span class="org">Avetics Drone Technologies</span>
+          <p class="hook">An RC boat turned autonomous: networking, LIDAR obstacle avoidance and a waterproof circuit box. Field tested on waypoint missions.</p>
+          <ul class="chips"><li>Hardware</li><li>Software</li><li>Mechanical</li></ul></div></a></li>
+      <li class="card" data-cat="ml research"><a href="#worker-risk">
+        <div class="thumb dark contain"><img src="assets/risk-dashboard.webp" alt="Supervisor dashboard listing workers and their predicted risk" loading="lazy"></div>
+        <div class="body"><span class="no">02</span><h3>Worker Risk Monitoring</h3><span class="org">GT AutoRobotics in Construction Lab</span>
+          <p class="hook">Models that read smartwatch biosignals and predict frustration and mental demand. Random Forest reached about 91%.</p>
+          <ul class="chips"><li>Machine learning</li><li>Research</li></ul></div></a></li>
+      <li class="card" data-cat="software"><a href="#glowin">
+        <div class="thumb contain"><img src="assets/glowin-architecture.webp" alt="Architecture diagram of the iOS app, Vapor server and database" loading="lazy"></div>
+        <div class="body"><span class="no">03</span><h3>A Full-Stack Fitness App</h3><span class="org">Solo build, Swift + Vapor</span>
+          <p class="hook">An iOS app pushed to beta that builds recipe and workout guides, on a REST API with about 21 endpoints.</p>
+          <ul class="chips"><li>Software</li></ul></div></a></li>
+      <li class="card" data-cat="ml research"><a href="#single-cell">
+        <div class="thumb contain"><img src="assets/cell-leiden.webp" alt="UMAP of microglia cells colored by Leiden cluster" loading="lazy"></div>
+        <div class="body"><span class="no">04</span><h3>Single-Cell Alzheimer's Analysis</h3><span class="org">Bioinformatics@GT</span>
+          <p class="hook">A Python pipeline that groups brain cells by gene activity and found an Alzheimer's-linked immune cell state.</p>
+          <ul class="chips"><li>Research</li><li>Machine learning</li></ul></div></a></li>
+      <li class="card" data-cat="software"><a href="#finding-george">
+        <div class="thumb"><img src="assets/george-crowd.webp" alt="Pixel crowd of faces in which George hides" loading="lazy"></div>
+        <div class="body"><span class="no">05</span><h3>Search Algorithm: Finding George</h3><span class="org">ECE 2035</span>
+          <p class="hook">Finds one face in a pixel crowd. Written in C, then optimized to 129 RISC-V instructions.</p>
+          <ul class="chips"><li>Algorithm</li></ul></div></a></li>
+      <li class="card" data-cat="hardware"><a href="#posture">
+        <div class="thumb"><img src="assets/posture-device.webp" alt="Posture prototype: Arduino and breadboard taped into a blue housing" loading="lazy"></div>
+        <div class="body"><span class="no">06</span><h3>Posture Correction Wearable</h3><span class="org">GT Medical Robotics</span>
+          <p class="hook">An IMU prototype that buzzes when you slouch past a set angle. I designed the circuit.</p>
+          <ul class="chips"><li>Hardware</li></ul></div></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= 01 USV ======================= -->
+<article class="view sheet" id="view-usv" data-view="usv" hidden>
+  <div class="wrap">
+    <a class="back" href="#work">All projects</a>
+    <header class="tb">
+      <div class="sheetno"><small>Sheet</small><b>01</b><small>of 06</small></div>
+      <div><h1>Unmanned Surface Vehicle</h1><p class="role">Solutions Engineer, Avetics Drone Technologies</p></div>
+      <div class="meta"><div><small>Discipline</small><ul class="chips"><li>Hardware</li><li>Software</li><li>Mechanical</li></ul></div></div>
+    </header>
+    <dl class="glance">
+      <div><dt>Role</dt><dd>Solutions Engineer</dd></div>
+      <div><dt>Timeline</dt><dd>3 months</dd></div>
+      <div><dt>My part</dt><dd>Autonomy stack, mechanical design, circuit design and manufacturing</dd></div>
+      <div><dt>Outcome</dt><dd>Field tests passed; the boat completed waypoint missions</dd></div>
+    </dl>
+
+    <section class="sec">
+      <header><h2 class="tape">Overview</h2></header>
+      <div class="prose">
+        <p>A project to create Avetics' first small-scale USV capable of autonomous waypoint navigation and obstacle avoidance to conduct missions. It is equipped with video streaming and remote deployment.</p>
+        <p>I modified an RC boat to carry the hardware for the software stack below.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">The software stack</h2><p>Click a numbered button on the diagram to see what that part does.</p></header>
+      <div class="stack">
+        <div><div class="stack-scroll">
+          <div class="stack-canvas" id="stack">
+            <img src="assets/usv-stack.svg" alt="Software stack: camera, Rock 5T computer, Wi-Fi gateways, 4G and Tailscale links, and the ground station" width="1440" height="640">
+          </div>
+        </div><p class="cap swipe">Scroll sideways to see the whole stack.</p></div>
+        <div class="panel" id="stack-panel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Development</h2></header>
+      <ol class="seq" style="padding:0;margin:0">
+        <li><span class="n">1</span><b>Network and video</b><p>Initial development established network communication from the ground control to the boat over Wi-Fi and 4G, to set missions and enable low-latency camera streaming over RTSP.</p></li>
+        <li><span class="n">2</span><b>Obstacle avoidance</b><p>Integrated LIDAR and an object avoidance pipeline to inform the flight controller (LIDAR point cloud transformation).</p></li>
+      </ol>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Hardware</h2></header>
+      <div class="split wide-left">
+        <figure class="fig"><a class="zoom" href="assets/usv-circuit-box.webp" data-cap="The waterproof circuit box I made"><img src="assets/usv-circuit-box.webp" alt="Open waterproof enclosure with the Rock 5T, wiring, connectors and cable glands" loading="lazy"></a>
+          <figcaption>Circuit box I made. The 3D-printed processor holder (CAD below) is bolted into place inside.</figcaption></figure>
+        <div class="prose">
+          <h3 style="margin:0 0 10px;font:italic 800 1.3rem/1.1 var(--display);color:var(--ink)">Physical skills</h3>
+          <ul class="skills"><li>Crimping and soldering custom connections</li><li>CAD assembly</li><li>Cable gland installation</li><li>Building a voltage divider</li></ul>
+        </div>
+      </div>
+      <div class="cad">
+        <figure class="fig"><a class="zoom" href="assets/usv-cad-gps.webp" data-cap="CAD: GPS mount"><div class="ground"><img src="assets/usv-cad-gps.webp" alt="CAD render of the GPS mount" loading="lazy"></div></a><figcaption>CAD: GPS mount</figcaption></figure>
+        <figure class="fig"><a class="zoom" href="assets/usv-cad-board.webp" data-cap="CAD: processor holder"><div class="ground"><img src="assets/usv-cad-board.webp" alt="CAD render of the processor holder" loading="lazy"></div></a><figcaption>CAD: processor holder, later 3D printed</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Prototype mount</h2><p>I designed and assembled it.</p></header>
+      <div class="mount">
+        <figure><a class="zoom ground" href="assets/usv-mockup.webp" data-cap="Exploded mockup of the sensor mount"><img src="assets/usv-mockup.webp" alt="Exploded render of the mount: Wi-Fi antenna, gateway, LIDAR, plates, posts, dome camera, GPS and waterproof box" loading="lazy"></a><span class="hand">*Mockup</span></figure>
+        <figure class="photo"><a class="zoom" href="assets/usv-built.webp" data-cap="The mount as built, with 3D-printed parts"><img src="assets/usv-built.webp" alt="The assembled mount on the boat" loading="lazy"></a><span class="hand r">Actual, with 3D-printed parts</span></figure>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Results and next steps</h2></header>
+      <p class="callout good">Field tests were successfully conducted, and the boat completed waypoint missions.</p>
+      <div class="prose">
+        <p>The LIDAR struggled because the filter algorithms omitted waves, and with them potential obstacles. The next step would be to integrate sonar and combine both datasets to guide obstacle avoidance.</p>
+        <p>Algorithms like Dijkstra's could also be applied to the nodal nature of our waypoints to compute the shortest path.</p>
+      </div>
+      <p class="note">* The final design is omitted for confidentiality reasons.</p>
+    </section>
+
+    <nav class="pager" aria-label="More projects"><a href="#posture"><small>Previous</small><b>Posture Correction Wearable</b></a><a href="#worker-risk"><small>Next</small><b>Worker Risk Monitoring</b></a></nav>
+  </div>
+</article>
+
+<!-- ======================= 02 WORKER RISK ======================= -->
+<article class="view sheet" id="view-worker-risk" data-view="worker-risk" hidden>
+  <div class="wrap">
+    <a class="back" href="#work">All projects</a>
+    <header class="tb">
+      <div class="sheetno"><small>Sheet</small><b>02</b><small>of 06</small></div>
+      <div><h1>Worker Risk Monitoring for Exoskeletons</h1><p class="role">Researcher, Georgia Tech AutoRobotics in Construction Lab</p></div>
+      <div class="meta"><div><small>Discipline</small><ul class="chips"><li>Machine learning</li><li>Research</li></ul></div></div>
+    </header>
+    <dl class="glance">
+      <div><dt>Role</dt><dd>Researcher</dd></div>
+      <div><dt>Data</dt><dd>Smartwatch biosignals, labelled by worker surveys</dd></div>
+      <div><dt>Predicts</dt><dd>Frustration and mental demand</dd></div>
+      <div><dt>Outcome</dt><dd>Random Forest, about 91% on both targets</dd></div>
+    </dl>
+
+    <section class="sec">
+      <header><h2 class="tape">Overview</h2></header>
+      <div class="prose"><p>Construction workers wearing exoskeletons have a smartwatch that records various biosignals. I trained models to read its signals and predict <b>frustration</b> and <b>mental demand</b> in real time, so supervisors can intervene before stress turns into injury. Labels come from user surveys matched to sensor data, recorded with and without the exoskeletons.</p></div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">How it works</h2><p>From wristband to dashboard.</p></header>
+      <div class="wide-scroll"><a class="zoom" href="assets/risk-how-it-works.webp" data-cap="How it works, end to end"><div class="ground" style="background:var(--paper-deep);padding:10px"><img src="assets/risk-how-it-works.webp" alt="Pipeline: Empatica wristband, AWS S3, poller, prediction server, frustration and mental demand outputs, dashboard" loading="lazy"></div></a></div>
+      <p class="callout">The prediction server is where the models I trained run. They were trained on filtered and normalized data from participants.</p>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Model performance</h2><p>Click a model to see where it gets confused.</p></header>
+      <div class="tabs" role="tablist" aria-label="Model" id="cm-tabs"></div>
+      <div class="cm">
+        <div class="cm-grid" id="cm-grid" role="img" aria-label="Confusion matrix"></div>
+        <div class="cm-side">
+          <h3 id="cm-acc">90.7%</h3>
+          <p id="cm-desc">accuracy on 1,566 test readings</p>
+          <ul class="bars" id="cm-bars"></ul>
+        </div>
+      </div>
+      <figure class="fig" style="max-width:420px"><a class="zoom" href="assets/risk-rf-report.webp" data-cap="Random Forest classification report"><div class="ground"><img src="assets/risk-rf-report.webp" alt="Random Forest classification report with precision, recall and F1 per class" loading="lazy"></div></a><figcaption>Random Forest classification report (best, about 91% for both targets)</figcaption></figure>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Dashboard</h2></header>
+      <figure class="fig"><a class="zoom" href="assets/risk-dashboard.webp" data-cap="Supervisor dashboard"><img src="assets/risk-dashboard.webp" alt="Dashboard showing an overview of the working force and a list of active workers with their predicted levels" loading="lazy" style="width:100%"></a>
+        <figcaption>What supervisors see: the working force at a glance and each worker's live readings.</figcaption></figure>
+    </section>
+
+    <nav class="pager" aria-label="More projects"><a href="#usv"><small>Previous</small><b>Unmanned Surface Vehicle</b></a><a href="#glowin"><small>Next</small><b>A Full-Stack Fitness App</b></a></nav>
+  </div>
+</article>
+
+<!-- ======================= 03 GLOWIN ======================= -->
+<article class="view sheet" id="view-glowin" data-view="glowin" hidden>
+  <div class="wrap">
+    <a class="back" href="#work">All projects</a>
+    <header class="tb">
+      <div class="sheetno"><small>Sheet</small><b>03</b><small>of 06</small></div>
+      <div><h1>Full-Stack iOS Fitness Companion</h1><p class="role">Solo build, Swift + Vapor</p></div>
+      <div class="meta">
+        <div><small>Discipline</small><ul class="chips"><li>Software</li></ul></div>
+        <div><small>Code</small><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="https://github.com/ayaanmonappa/Glowin-Backend" target="_blank" rel="noopener">Backend</a><a class="btn" href="https://github.com/ayaanmonappa/Glowin-frontend2" target="_blank" rel="noopener">Frontend</a></div></div>
+      </div>
+    </header>
+    <dl class="glance">
+      <div><dt>Role</dt><dd>Solo build, front to back</dd></div>
+      <div><dt>Frontend</dt><dd>SwiftUI</dd></div>
+      <div><dt>Backend</dt><dd>Vapor server in Docker, exposed with ngrok</dd></div>
+      <div><dt>Status</dt><dd>Pushed to beta</dd></div>
+    </dl>
+
+    <section class="sec">
+      <header><h2 class="tape">Overview</h2></header>
+      <div class="prose"><ul>
+        <li>A full-stack iOS application pushed to beta that generates personalized recipe and workout guides.</li>
+        <li>Developed the backend architecture, with exposed local endpoints and custom API calls.</li>
+      </ul></div>
+      <div class="stats">
+        <div><b>~5,500</b><span>lines of Swift across a SwiftUI app and a Vapor server</span></div>
+        <div><b>~21</b><span>REST endpoints, with Bcrypt-hashed passwords, token auth and email verification</span></div>
+        <div><b>2</b><span>external APIs with custom requests based on the user's data</span></div>
+        <div><b>Docker</b><span>containerized backend, exposed to devices with ngrok</span></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape part">Part 1: Planning</h2><p>Click a tab to switch between documents.</p></header>
+      <div class="tabs" role="tablist" aria-label="Planning documents" data-tabs="plan">
+        <button type="button" role="tab" aria-selected="true" aria-controls="plan-arch" id="t-plan-arch">Overall architecture</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="plan-flow" id="t-plan-flow">Program flow</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="plan-db" id="t-plan-db">Database design</button>
+      </div>
+      <div class="planpane" role="tabpanel" id="plan-arch" aria-labelledby="t-plan-arch">
+        <figure class="fig"><a class="zoom" href="assets/glowin-architecture.webp" data-cap="Overall architecture"><div class="ground"><img src="assets/glowin-architecture.webp" alt="Architecture: iOS app sends HTTP requests through ngrok to the Vapor server in Docker, which talks to PostgreSQL on Azure and the Edamam API" loading="lazy"></div></a>
+        <figcaption>SwiftUI frontend, Vapor server in Docker, PostgreSQL on Azure, Edamam for recipes.</figcaption></figure>
+      </div>
+      <div class="planpane" role="tabpanel" id="plan-flow" aria-labelledby="t-plan-flow" hidden>
+        <p class="prose" style="margin:0 0 12px">Creating these diagrams informed user navigation and helped implement error checks.</p>
+        <div class="flows">
+          <a class="zoom" href="assets/glowin-flow-1.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-1.webp" alt="Program flowchart" loading="lazy"></div></a>
+          <a class="zoom" href="assets/glowin-flow-2.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-2.webp" alt="Program flowchart" loading="lazy"></div></a>
+          <a class="zoom" href="assets/glowin-flow-3.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-3.webp" alt="Program flowchart" loading="lazy"></div></a>
+          <a class="zoom" href="assets/glowin-flow-4.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-4.webp" alt="Program flowchart" loading="lazy"></div></a>
+        </div>
+      </div>
+      <div class="planpane" role="tabpanel" id="plan-db" aria-labelledby="t-plan-db" hidden>
+        <figure class="fig"><a class="zoom" href="assets/glowin-db.webp" data-cap="Database design"><div class="ground"><img src="assets/glowin-db.webp" alt="Database schema: users, user tokens, generated goals and measurements tables" loading="lazy"></div></a></figure>
+        <div class="ngrok" style="margin-top:18px">
+          <div class="labels"><span class="hand">Ngrok requests</span><span class="hand">SQL backend</span></div>
+          <a class="zoom" href="assets/glowin-ngrok-sql.webp" data-cap="Ngrok request log and the SQL backend"><img src="assets/glowin-ngrok-sql.webp" alt="Terminal with ngrok request log next to a SQL client showing the users table" loading="lazy" style="width:100%"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape part">Part 2: Implementation</h2><p>User UI flow. Scroll sideways through the screens.</p></header>
+      <div class="flowchips" role="group" aria-label="Jump to flow">
+        <button class="btn ghost" type="button" data-jump="ph-recipes">Recipes</button>
+        <button class="btn ghost" type="button" data-jump="ph-home">Homepage</button>
+        <button class="btn ghost" type="button" data-jump="ph-workout">Workouts</button>
+      </div>
+      <ul class="phones" id="phones" tabindex="0" aria-label="App screens">
+        <li id="ph-recipes"><span class="grp">Recipes</span><img src="assets/app-fetching.webp" alt="Recipes screen while fetching from the API" loading="lazy"><span class="hand">Fetching API</span></li>
+        <li><span class="grp">Recipes</span><img src="assets/app-recipes-search.webp" alt="Recipe search results" loading="lazy"><span class="hand">Search</span></li>
+        <li><span class="grp">Recipes</span><img src="assets/app-recipes.webp" alt="List of recipes with calories and servings" loading="lazy"><span class="hand">Recipes fetched through the API change with the current goal and input</span></li>
+        <li id="ph-home"><span class="grp">Homepage</span><img src="assets/app-home.webp" alt="Homepage with current stats, recommended goals and buttons for recipes, workouts and statistics" loading="lazy"><span class="hand">Homepage</span></li>
+        <li><span class="grp">Homepage</span><img src="assets/app-measurements.webp" alt="Input measurements form" loading="lazy"><span class="hand">Input measurements</span></li>
+        <li id="ph-workout"><span class="grp">Workouts</span><img src="assets/app-workout.webp" alt="Day 1 upper body workout list" loading="lazy"><span class="hand">Generated workout</span></li>
+        <li><span class="grp">Workouts</span><img src="assets/app-api-get.webp" alt="Exercise detail with an animated demonstration from the API" loading="lazy"><span class="hand">API GET</span></li>
+      </ul>
+      <div class="repo-cta">
+        <div>
+          <p style="margin:0">To get a better understanding of the extent of the modular development, visit the GitHub. It contains the Vapor backend, the Swift frontend and a README.</p>
+          <div class="btns"><a class="btn" href="https://github.com/ayaanmonappa/Glowin-Backend" target="_blank" rel="noopener">Vapor backend</a><a class="btn" href="https://github.com/ayaanmonappa/Glowin-frontend2" target="_blank" rel="noopener">Swift frontend</a></div>
+        </div>
+        <span class="shout" aria-hidden="true">Visit the repos!</span>
+      </div>
+    </section>
+
+    <nav class="pager" aria-label="More projects"><a href="#worker-risk"><small>Previous</small><b>Worker Risk Monitoring</b></a><a href="#single-cell"><small>Next</small><b>Single-Cell Alzheimer's Analysis</b></a></nav>
+  </div>
+</article>
+
+<!-- ======================= 04 SINGLE CELL ======================= -->
+<article class="view sheet" id="view-single-cell" data-view="single-cell" hidden>
+  <div class="wrap">
+    <a class="back" href="#work">All projects</a>
+    <header class="tb">
+      <div class="sheetno"><small>Sheet</small><b>04</b><small>of 06</small></div>
+      <div><h1>Single-Cell Alzheimer's Analysis</h1><p class="role">Researcher, Bioinformatics@GT</p></div>
+      <div class="meta">
+        <div><small>Discipline</small><ul class="chips"><li>Research</li><li>Machine learning</li></ul></div>
+        <div><small>Code</small><a class="btn" href="https://github.com/ayaanmonappa/alzheimers-single-cell" target="_blank" rel="noopener">Full script and results</a></div>
+      </div>
+    </header>
+    <dl class="glance">
+      <div><dt>Role</dt><dd>Researcher</dd></div>
+      <div><dt>Built</dt><dd>A reusable Python pipeline</dd></div>
+      <div><dt>Data</dt><dd>Public GEO data, human brain tissue and mouse models</dd></div>
+      <div><dt>Outcome</dt><dd>All six cell types recovered; an Alzheimer's-linked immune state found</dd></div>
+    </dl>
+
+    <section class="sec">
+      <header><h2 class="tape">Overview</h2></header>
+      <div class="prose"><p>Alzheimer's doesn't affect every brain cell the same way. My goal was to build a reusable Python pipeline that reads gene activity in individual cells and groups them by type and state, then use it to ask where in the brain the disease leaves its mark. I developed it on human brain tissue, then reused it on mouse models to zoom in on microglia, the brain's immune cells.</p></div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Pipeline</h2><p>Each stage feeds the next.</p></header>
+      <ol class="pipe">
+        <li><b>Load</b>Public GEO data: gene × cell counts and per-cell metadata</li>
+        <li><b>Quality</b>Drop cells with too few genes</li>
+        <li><b>Normalize</b>Scale each cell to 10,000 counts, log transform, z-score</li>
+        <li><b>Reduce</b>Keep the 2,000 most variable genes</li>
+        <li><b>Cluster</b>Group similar cells, map with UMAP, find marker genes</li>
+      </ol>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape part">Part 1: Human brain tissue</h2><p>Could I group the cells at all?</p></header>
+      <div class="violins">
+        <figure class="fig"><a class="zoom ground" href="assets/cell-types.webp" data-cap="Genes detected per cell, by cell type"><img src="assets/cell-types.webp" alt="Violin plot of genes detected per cell for each cell type" loading="lazy"></a><figcaption><b style="color:var(--chalk)">Every major cell type.</b> Genes detected per cell, by cell type.</figcaption></figure>
+        <figure class="fig"><a class="zoom ground" href="assets/cell-ad-vs-control.webp" data-cap="Genes detected per cell, Alzheimer's vs control"><img src="assets/cell-ad-vs-control.webp" alt="Violin plot comparing genes detected per cell in Alzheimer's and control samples" loading="lazy"></a><figcaption><b style="color:var(--chalk)">Alzheimer's vs. control.</b> Genes detected per cell, by condition.</figcaption></figure>
+        <div class="result prose"><p><b style="color:var(--tape)">Result:</b> the pipeline recovered all six major cell types: neurons, astrocytes, oligodendrocytes and their precursors, microglia and endothelial cells. Cells from Alzheimer's brains showed fewer detected genes on average, a difference that could reflect the disease or tissue quality, which I'd have to separate before drawing conclusions.</p></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape part">Part 2: Zooming in on microglia</h2></header>
+      <div class="prose"><p><b style="color:var(--tape)">Goal:</b> test whether unsupervised clustering, with no labels given, can rediscover the microglial states that researchers identified by hand, and find which of those states are tied to Alzheimer's pathology.</p></div>
+      <p class="cap" style="margin:0">Click a method to compare how it grouped the same cells.</p>
+      <div class="tabs" role="tablist" aria-label="Clustering method" data-tabs="method">
+        <button type="button" role="tab" aria-selected="false" aria-controls="m-kmeans" id="t-m-kmeans">K-Means</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="m-louvain" id="t-m-louvain">Louvain</button>
+        <button type="button" role="tab" aria-selected="true" aria-controls="m-leiden" id="t-m-leiden">Leiden</button>
+      </div>
+      <div class="methods" role="tabpanel" id="m-kmeans" aria-labelledby="t-m-kmeans" hidden>
+        <a class="zoom ground" href="assets/cell-kmeans.webp" data-cap="K-Means clusters"><img src="assets/cell-kmeans.webp" alt="UMAP colored by five K-Means clusters, most cells in one cluster" loading="lazy"></a>
+        <div><h3>K-Means</h3><p>Assumes round, equal-sized groups. With k = 5 from an elbow plot, it lumped most cells into one cluster.</p></div>
+      </div>
+      <div class="methods" role="tabpanel" id="m-louvain" aria-labelledby="t-m-louvain" hidden>
+        <a class="zoom ground" href="assets/cell-louvain.webp" data-cap="Louvain clusters"><img src="assets/cell-louvain.webp" alt="UMAP colored by 15 Louvain clusters" loading="lazy"></a>
+        <div><h3>Louvain</h3><p>Links each cell to its 15 nearest neighbors and finds connected communities: 15 clusters.</p></div>
+      </div>
+      <div class="methods" role="tabpanel" id="m-leiden" aria-labelledby="t-m-leiden">
+        <a class="zoom ground" href="assets/cell-leiden.webp" data-cap="Leiden clusters"><img src="assets/cell-leiden.webp" alt="UMAP colored by 14 Leiden clusters" loading="lazy"></a>
+        <div><h3>Leiden</h3><p>Refines Louvain so every community stays well connected: 14 clusters.</p><p class="used">Used for the final analysis</p></div>
+      </div>
+      <figure class="fig"><a class="zoom ground" href="assets/cell-states.webp" data-cap="Microglia by cell state, genotype and age"><img src="assets/cell-states.webp" alt="Three UMAPs colored by cell state, genotype and age" loading="lazy"></a>
+        <figcaption>Each dot is one microglia cell; nearby dots have similar gene activity. Colored by cell state, genotype and age.</figcaption></figure>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">What I found</h2></header>
+      <div class="findings">
+        <p>My code sorted the cells into groups using only their gene activity, with no labels given, and the groups it found matched the categories that expert researchers had identified by hand.</p>
+        <p>One group stood out: immune cells that had switched from a calm, resting mode into an "alarm" mode, turning on genes for responding to damage and clearing debris. Two of those genes, <i>APOE</i> and <i>TREM2</i>, are among the best-known genetic risk factors for Alzheimer's in people.</p>
+        <p>These alarmed cells came mostly from older mice bred to develop Alzheimer's-like disease. In healthy mice, the immune cells stayed in their resting mode. So this alarm state builds up as the disease progresses and with age.</p>
+        <p>While it doesn't tell us anything new, this project was an intro to unsupervised learning. The repo has a lot more information and results.</p>
+      </div>
+      <div><a class="btn" href="https://github.com/ayaanmonappa/alzheimers-single-cell" target="_blank" rel="noopener">Open the repo</a></div>
+    </section>
+
+    <nav class="pager" aria-label="More projects"><a href="#glowin"><small>Previous</small><b>A Full-Stack Fitness App</b></a><a href="#finding-george"><small>Next</small><b>Search Algorithm: Finding George</b></a></nav>
+  </div>
+</article>
+
+<!-- ======================= 05 GEORGE ======================= -->
+<article class="view sheet" id="view-finding-george" data-view="finding-george" hidden>
+  <div class="wrap">
+    <a class="back" href="#work">All projects</a>
+    <header class="tb">
+      <div class="sheetno"><small>Sheet</small><b>05</b><small>of 06</small></div>
+      <div><h1>Search Algorithm: Finding George</h1><p class="role">ECE 2035 coursework</p></div>
+      <div class="meta">
+        <div><small>Discipline</small><ul class="chips"><li>Algorithm</li></ul></div>
+        <div><small>Write-up</small><a class="btn" href="https://github.com/ayaanmonappa/SouceFindingGeorge" target="_blank" rel="noopener">GitHub</a></div>
+      </div>
+    </header>
+    <dl class="glance">
+      <div><dt>Course</dt><dd>ECE 2035</dd></div>
+      <div><dt>Languages</dt><dd>C, then optimized in RISC-V assembly</dd></div>
+      <div><dt>Size</dt><dd>129 static instructions</dd></div>
+      <div><dt>Score</dt><dd>54/50 estimated performance</dd></div>
+    </dl>
+
+    <section class="sec">
+      <header><h2 class="tape">Overview</h2></header>
+      <div class="prose"><p>Goal: write an efficient search algorithm that finds George in a pixel crowd and returns his bounding box. George has certain characteristics and can be scaled by a factor of 2, 3, 4 or 5. Other <b style="color:var(--salmon)">impostors</b> lie in the crowd. Programmed in C, then optimized in RISC-V.</p></div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Approach</h2><p>Four steps, in order, on an example crowd.</p></header>
+      <div class="george">
+        <figure class="fig"><a class="zoom ground" href="assets/george-crowd.webp" data-cap="Example crowd"><img src="assets/george-crowd.webp" alt="Example pixel crowd with several look-alike faces" loading="lazy" style="image-rendering:pixelated;width:100%"></a><figcaption>Finding George (example crowd)</figcaption></figure>
+        <ol class="seq" style="padding:0;margin:0">
+          <li><span class="n">1</span><b>Scan sparsely</b><p>Every face is at least 12 pixels tall, so checking every 12th row is enough to land in a face without missing any.</p></li>
+          <li><span class="n">2</span><b>Walk to the leftmost edge</b><p>Iterate left and up until you hit a background color. This is the start of a hat or brim.</p></li>
+          <li><span class="n">3</span><b>Measure one row</b><p>The brim is 11n and the collar is 7n, so a single row gives the scale and position.</p></li>
+          <li><span class="n">4</span><b>Check 9 key cells</b><p>Mouth, emblem, eyes and colors are compared to the sample image. On a mismatch, jump on immediately.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Results in RISC-V</h2></header>
+      <div class="stats">
+        <div><b>129</b><span>static instructions</span></div>
+        <div><b>~1,555</b><span>dynamic instructions per crowd, on average</span></div>
+        <div><b>~28</b><span>words of memory</span></div>
+        <div><b>54/50</b><span>estimated performance score</span></div>
+      </div>
+      <ul class="chips"><li>C</li><li>RISC-V assembly</li><li>Algorithm design</li><li>Performance optimization</li></ul>
+      <p class="note">Other efficiencies are left out here; the GitHub repo explains the implementation. The repo with the code is private due to academic requirements but can be requested.</p>
+    </section>
+
+    <nav class="pager" aria-label="More projects"><a href="#single-cell"><small>Previous</small><b>Single-Cell Alzheimer's Analysis</b></a><a href="#posture"><small>Next</small><b>Posture Correction Wearable</b></a></nav>
+  </div>
+</article>
+
+<!-- ======================= 06 POSTURE ======================= -->
+<article class="view sheet" id="view-posture" data-view="posture" hidden>
+  <div class="wrap">
+    <a class="back" href="#work">All projects</a>
+    <header class="tb">
+      <div class="sheetno"><small>Sheet</small><b>06</b><small>of 06</small></div>
+      <div><h1>Back Posture Correction Prototype</h1><p class="role">Medical Robotics prototype project, GT Medical Robotics</p></div>
+      <div class="meta"><div><small>Discipline</small><ul class="chips"><li>Hardware</li></ul></div></div>
+    </header>
+    <dl class="glance">
+      <div><dt>Brief</dt><dd>A medical device prototype that solves an issue</dd></div>
+      <div><dt>We chose</dt><dd>Poor posture</dd></div>
+      <div><dt>My part</dt><dd>Circuit design; helped with firmware</dd></div>
+      <div><dt>Works by</dt><dd>IMU tilt reading triggers a vibration motor</dd></div>
+    </dl>
+
+    <section class="sec">
+      <header><h2 class="tape">Overview</h2></header>
+      <div class="prose"><ul>
+        <li>Create a prototype of a medical device that solves an issue. We chose "poor posture".</li>
+        <li>I designed the circuitry and assisted with the firmware development.</li>
+      </ul></div>
+    </section>
+
+    <section class="sec">
+      <header><h2 class="tape">Hardware</h2><p>Click a component to highlight it on the circuit diagram below.</p></header>
+      <div class="posture">
+        <figure class="fig photo"><a class="zoom" href="assets/posture-device.webp" data-cap="The prototype"><img src="assets/posture-device.webp" alt="Hand holding the prototype: Arduino Uno and breadboard in a taped blue housing" loading="lazy"></a></figure>
+        <div class="parts">
+          <h3>Components I used</h3>
+          <ul id="parts">
+            <li><button type="button" data-z="imu" aria-pressed="false"><span><b>MPU-6050 IMU:</b> our sensor, with a gyroscope and accelerometer</span></button></li>
+            <li><button type="button" data-z="npn" aria-pressed="false"><span><b>NPN transistor:</b> ensures enough current is supplied to the motor</span></button></li>
+            <li><button type="button" data-z="diode" aria-pressed="false"><span><b>Flyback diode:</b> part of the protection circuit</span></button></li>
+            <li><button type="button" data-z="motor" aria-pressed="false"><span><b>Vibration motor:</b> alerts the user</span></button></li>
+            <li><button type="button" data-z="uno" aria-pressed="false"><span><b>Arduino Uno:</b> runs the firmware and signals the hardware</span></button></li>
+            <li><button type="button" data-z="power" aria-pressed="false"><span><b>Battery:</b> for power (the +5V supply)</span></button></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="circuit">
+      <header><h2 class="tape">Circuit design</h2></header>
+      <div class="schem" id="schem">
+        <img src="assets/posture-schematic.webp" alt="Schematic: Arduino Uno connected to the IMU over I2C; pin D9 drives an NPN transistor through a 1k base resistor to switch the vibration motor, with a flyback diode across the motor" loading="lazy" width="1967" height="1168">
+        <div class="zone" data-zone="uno" style="left:11%;top:12%;width:22%;height:47%"><span>Arduino Uno</span></div>
+        <div class="zone" data-zone="imu" style="left:71%;top:12%;width:21.5%;height:41%"><span>MPU-6050 IMU</span></div>
+        <div class="zone" data-zone="motor" style="left:45%;top:55%;width:18%;height:10%"><span>Vibration motor</span></div>
+        <div class="zone" data-zone="diode" style="left:65%;top:59%;width:15%;height:8%"><span>Flyback diode</span></div>
+        <div class="zone" data-zone="npn" style="left:40%;top:80%;width:30%;height:13%"><span>NPN transistor + 1k base resistor</span></div>
+        <div class="zone" data-zone="power" style="left:55%;top:40%;width:6%;height:6%"><span>+5V supply</span></div>
+      </div>
+      <div class="split">
+        <div class="prose"><p>When a filtered raw tilt reading (roll and pitch) crosses a set threshold, the firmware triggers the vibration motor until an adequate angle is reached.</p></div>
+        <div class="prose"><p><b style="color:var(--tape)">Challenges:</b> the real device would have to be much smaller and sit directly on the surface of the skin to be accurate.</p></div>
+      </div>
+    </section>
+
+    <nav class="pager" aria-label="More projects"><a href="#finding-george"><small>Previous</small><b>Search Algorithm: Finding George</b></a><a href="#usv"><small>Next</small><b>Unmanned Surface Vehicle</b></a></nav>
+  </div>
+</article>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Ayaan Monappa, B.S. Computer Engineering, Georgia Institute of Technology</span>
+    <span><a href="assets/Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume</a> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/ayaan-monappa-2b86782ab/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; <a href="https://github.com/ayaanmonappa" target="_blank" rel="noopener">GitHub</a></span>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Enlarged image">
+  <img id="lb-img" alt="">
+  <div class="lb-bar"><span id="lb-cap"></span><button type="button" id="lb-close">Close</button></div>
+</dialog>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* ---------- routing: #work / #usv / ... ---------- */
+  const views = $$("[data-view]");
+  const ids = views.map(v => v.dataset.view);
+  function route() {
+    const h = location.hash.slice(1);
+    const target = ids.includes(h) && h !== "home" ? h : "home";
+    views.forEach(v => { v.hidden = v.dataset.view !== target; });
+    if (target === "home") {
+      if (h === "work") { const w = $("#work"); w && w.scrollIntoView(); } else window.scrollTo(0, 0);
+      document.title = "Ayaan Monappa Portfolio";
+    } else {
+      window.scrollTo(0, 0);
+      const t = $("h1", $(`[data-view="${target}"]`)); document.title = (t ? t.textContent + " | " : "") + "Ayaan Monappa";
+    }
+  }
+  addEventListener("hashchange", route); route();
+
+  /* ---------- filters ---------- */
+  $$(".filters button").forEach(b => b.addEventListener("click", () => {
+    $$(".filters button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    const f = b.dataset.f;
+    $$(".card").forEach(c => { c.hidden = f !== "all" && !c.dataset.cat.split(" ").includes(f); });
+  }));
+
+  /* ---------- lightbox ---------- */
+  const lb = $("#lb"), lbImg = $("#lb-img"), lbCap = $("#lb-cap");
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a.zoom"); if (!a) return;
+    e.preventDefault();
+    lbImg.src = a.getAttribute("href"); lbImg.alt = a.dataset.cap || ""; lbCap.textContent = a.dataset.cap || "";
+    if (typeof lb.showModal === "function") lb.showModal(); else lb.setAttribute("open", "");
+  });
+  $("#lb-close").addEventListener("click", () => lb.close());
+  lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+
+  /* ---------- generic tabs ---------- */
+  $$("[data-tabs]").forEach(list => {
+    const tabs = $$('[role="tab"]', list);
+    const select = t => tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; });
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(t));
+      t.addEventListener("keydown", e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const n = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); select(n); } });
+    });
+    select(tabs.find(t => t.getAttribute("aria-selected") === "true") || tabs[0]);
+  });
+
+  /* ---------- USV software stack ---------- */
+  const PARTS = [
+    { x: 40, y: 236, t: "Hikvision camera", k: "On the boat", d: "The dome camera on the sensor mount. It sends its feed to the onboard computer over an Ethernet (Cat6) cable." },
+    { x: 240, y: 185, t: "Gstreamer on the Rock 5T", k: "On the boat", d: "The onboard computer is a Rock 5T running Radxa OS. Gstreamer converts the camera's RTSP feed to WebRTC and broadcasts it as UDP." },
+    { x: 425, y: 185, t: "BlueOS", k: "On the boat", d: "BlueOS on the Rock 5T receives the video stream in UDP and runs the vehicle software." },
+    { x: 660, y: 270, t: "AsiaRF Wi-Fi gateway (boat)", k: "Link to shore", d: "One of two AsiaRF gateways. They link boat and shore over 2.4 GHz Wi-Fi, set up as access point to client with mesh Wi-Fi." },
+    { x: 870, y: 270, t: "AsiaRF Wi-Fi gateway (shore)", k: "Link to shore", d: "The shore-side gateway receives the 2.4 GHz link and hands the stream to the ground station." },
+    { x: 338, y: 528, t: "4G dongle", k: "Backup link", d: "A USB 4G dongle on the Rock 5T gives the boat a second route to shore over the cellular network." },
+    { x: 742, y: 515, t: "Tailscale server", k: "Backup link", d: "Tailscale joins the 4G route to the ground station, which connects over office Wi-Fi or a hotspot." },
+    { x: 1075, y: 128, t: "BlueOS in Docker", k: "Ground station", d: "A Windows machine with remote access to the Rockchip. BlueOS runs in Docker here and serves the video stream." },
+    { x: 1075, y: 338, t: "Cockpit", k: "Ground station", d: "Cockpit, on desktop or the lite version in Docker, is the video viewer at the ground station." },
+  ];
+  const stack = $("#stack"), panel = $("#stack-panel");
+  if (stack) {
+    const show = (i, btn) => {
+      $$(".hot", stack).forEach(b => b.setAttribute("aria-pressed", b === btn));
+      const p = PARTS[i];
+      panel.innerHTML = `<small>${p.k}</small><h3>${p.t}</h3><p>${p.d}</p>`;
+    };
+    PARTS.forEach((p, i) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "hot"; b.textContent = i + 1;
+      b.style.left = (p.x / 1440 * 100) + "%"; b.style.top = (p.y / 640 * 100) + "%";
+      b.setAttribute("aria-label", p.t); b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", () => show(i, b));
+      stack.appendChild(b);
+    });
+    show(1, $$(".hot", stack)[1]);
+  }
+
+  /* ---------- confusion matrices ---------- */
+  const MODELS = [
+    { k: "rf", n: "Random Forest", m: [[1000, 31, 10], [37, 271, 18], [17, 32, 150]] },
+    { k: "knn", n: "K-Nearest Neighbors", m: [[993, 36, 12], [53, 242, 31], [28, 18, 153]] },
+    { k: "dt", n: "Decision Tree", m: [[978, 47, 16], [51, 232, 43], [21, 36, 142]] },
+    { k: "nn", n: "Neural Network", m: [[978, 50, 13], [70, 236, 20], [59, 36, 104]] },
+  ];
+  const LV = ["Low", "Med", "High"];
+  const acc = m => (m[0][0] + m[1][1] + m[2][2]) / m.flat().reduce((a, b) => a + b, 0);
+  const tabsEl = $("#cm-tabs");
+  if (tabsEl) {
+    const grid = $("#cm-grid"), bars = $("#cm-bars");
+    const draw = k => {
+      const M = MODELS.find(x => x.k === k), m = M.m;
+      $$("button", tabsEl).forEach(b => { const on = b.dataset.k === k; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; });
+      let h = `<span class="ax" style="grid-column:2;grid-row:1"></span>` + LV.map((l, j) => `<span class="ax" style="grid-column:${j + 3};grid-row:1">${l}</span>`).join("");
+      h += `<span class="ax yl">Actual level</span><span class="ax xl">Predicted level</span>`;
+      m.forEach((row, i) => {
+        const tot = row.reduce((a, b) => a + b, 0);
+        h += `<span class="ax" style="grid-column:2;grid-row:${i + 2}">${LV[i]}</span>`;
+        row.forEach((v, j) => {
+          const r = v / tot, diag = i === j;
+          const bg = diag ? `rgba(254,174,0,${.25 + r * .75})` : `rgba(255,150,141,${Math.min(1, .12 + r * 3)})`;
+          h += `<span class="cell" style="grid-column:${j + 3};grid-row:${i + 2};background:${bg}" title="Actual ${LV[i]}, predicted ${LV[j]}: ${v}">${v}</span>`;
+        });
+      });
+      grid.innerHTML = h;
+      grid.setAttribute("aria-label", `${M.n} confusion matrix. Rows are actual levels low, medium, high; columns are predicted. ` + m.map((r, i) => `${LV[i]}: ${r.join(", ")}`).join("; "));
+      $("#cm-acc").textContent = (acc(m) * 100).toFixed(1) + "%";
+      const hi = m[2], hiTot = hi.reduce((a, b) => a + b, 0), hiR = (hi[2] / hiTot * 100).toFixed(0);
+      $("#cm-desc").textContent = `${M.n} accuracy on ${m.flat().reduce((a, b) => a + b, 0).toLocaleString()} test readings. Of the ${hiTot} readings where stress was actually high, it labelled ${hi[2]} (${hiR}%) as high.`;
+      $$("li", bars).forEach(li => li.classList.toggle("on", li.dataset.k === k));
+    };
+    MODELS.forEach(M => {
+      const b = document.createElement("button"); b.type = "button"; b.role = "tab"; b.dataset.k = M.k; b.textContent = M.n;
+      b.setAttribute("role", "tab"); b.addEventListener("click", () => draw(M.k)); tabsEl.appendChild(b);
+    });
+    [...MODELS].sort((a, b) => acc(b.m) - acc(a.m)).forEach(M => {
+      const a = acc(M.m), li = document.createElement("li"); li.dataset.k = M.k;
+      li.innerHTML = `<span>${M.n}</span><span class="track"><span class="fill" style="width:${((a - .75) / .2 * 100).toFixed(1)}%"></span></span><span>${(a * 100).toFixed(1)}%</span>`;
+      bars.appendChild(li);
+    });
+    draw("rf");
+  }
+
+  /* ---------- phone strip jumps ---------- */
+  $$("[data-jump]").forEach(b => b.addEventListener("click", () => {
+    const el = document.getElementById(b.dataset.jump), strip = $("#phones");
+    strip.scrollTo({ left: el.offsetLeft - strip.offsetLeft, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }));
+
+  /* ---------- posture parts ↔ schematic ---------- */
+  const parts = $$("#parts button"), zones = $$("#schem .zone");
+  const light = z => zones.forEach(el => el.classList.toggle("on", el.dataset.zone === z));
+  parts.forEach(b => {
+    b.addEventListener("mouseenter", () => light(b.dataset.z));
+    b.addEventListener("mouseleave", () => { const on = parts.find(x => x.getAttribute("aria-pressed") === "true"); light(on ? on.dataset.z : null); });
+    b.addEventListener("click", () => {
+      const was = b.getAttribute("aria-pressed") === "true";
+      parts.forEach(x => x.setAttribute("aria-pressed", "false"));
+      if (!was) { b.setAttribute("aria-pressed", "true"); light(b.dataset.z); const s = $("#schem"); const r = s.getBoundingClientRect(); if (r.top > innerHeight * .6 || r.bottom < 80) s.scrollIntoView({ block: "center", behavior: "smooth" }); }
+      else light(null);
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -43,7 +43,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0; color: var(--chalk); font: 400 var(--step-0)/1.6 var(--body);
   background-color: var(--paper);
-  background-image: linear-gradient(rgba(14, 40, 62, .2), rgba(14, 40, 62, .2)), url("assets/paper.webp");
+  background-image: linear-gradient(rgba(14, 40, 62, .2), rgba(14, 40, 62, .2)), url("paper.webp");
   background-size: auto, 600px 600px;
 }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper-deep); }
@@ -330,7 +330,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
     <a class="me" href="#work">Ayaan Monappa</a>
     <nav aria-label="Site">
       <a href="#work">Projects</a>
-      <a href="assets/Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume</a>
       <a href="https://www.linkedin.com/in/ayaan-monappa-2b86782ab/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/ayaanmonappa" target="_blank" rel="noopener">GitHub</a>
     </nav>
@@ -348,12 +348,12 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
         <p class="who">Ayaan Monappa<br>B.S. Computer Engineering<br>Georgia Institute of Technology</p>
         <div class="links">
           <a class="btn" href="#work">See the projects</a>
-          <a class="btn" href="assets/Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+          <a class="btn" href="Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
           <a class="btn ghost" href="https://github.com/ayaanmonappa" target="_blank" rel="noopener">GitHub: ayaanmonappa</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/ayaan-monappa-2b86782ab/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-      <div class="portrait"><img src="assets/headshot.webp" alt="Portrait of Ayaan Monappa" width="700" height="1047"></div>
+      <div class="portrait"><img src="headshot.webp" alt="Portrait of Ayaan Monappa" width="700" height="1047"></div>
     </div>
 
     <div class="index-head" id="work">
@@ -368,32 +368,32 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
     </div>
     <ul class="cards">
       <li class="card" data-cat="hardware software"><a href="#usv">
-        <div class="thumb"><img src="assets/usv-built.webp" alt="The sensor mount on the boat, with Wi-Fi gateway, LIDAR and dome camera" loading="lazy" style="object-position:50% 30%"></div>
+        <div class="thumb"><img src="usv-built.webp" alt="The sensor mount on the boat, with Wi-Fi gateway, LIDAR and dome camera" loading="lazy" style="object-position:50% 30%"></div>
         <div class="body"><span class="no">01</span><h3>Unmanned Surface Vehicle</h3><span class="org">Avetics Drone Technologies</span>
           <p class="hook">An RC boat turned autonomous: networking, LIDAR obstacle avoidance and a waterproof circuit box. Field tested on waypoint missions.</p>
           <ul class="chips"><li>Hardware</li><li>Software</li><li>Mechanical</li></ul></div></a></li>
       <li class="card" data-cat="ml research"><a href="#worker-risk">
-        <div class="thumb dark contain"><img src="assets/risk-dashboard.webp" alt="Supervisor dashboard listing workers and their predicted risk" loading="lazy"></div>
+        <div class="thumb dark contain"><img src="risk-dashboard.webp" alt="Supervisor dashboard listing workers and their predicted risk" loading="lazy"></div>
         <div class="body"><span class="no">02</span><h3>Worker Risk Monitoring</h3><span class="org">GT AutoRobotics in Construction Lab</span>
           <p class="hook">Models that read smartwatch biosignals and predict frustration and mental demand. Random Forest reached about 91%.</p>
           <ul class="chips"><li>Machine learning</li><li>Research</li></ul></div></a></li>
       <li class="card" data-cat="software"><a href="#glowin">
-        <div class="thumb contain"><img src="assets/glowin-architecture.webp" alt="Architecture diagram of the iOS app, Vapor server and database" loading="lazy"></div>
+        <div class="thumb contain"><img src="glowin-architecture.webp" alt="Architecture diagram of the iOS app, Vapor server and database" loading="lazy"></div>
         <div class="body"><span class="no">03</span><h3>A Full-Stack Fitness App</h3><span class="org">Solo build, Swift + Vapor</span>
           <p class="hook">An iOS app pushed to beta that builds recipe and workout guides, on a REST API with about 21 endpoints.</p>
           <ul class="chips"><li>Software</li></ul></div></a></li>
       <li class="card" data-cat="ml research"><a href="#single-cell">
-        <div class="thumb contain"><img src="assets/cell-leiden.webp" alt="UMAP of microglia cells colored by Leiden cluster" loading="lazy"></div>
+        <div class="thumb contain"><img src="cell-leiden.webp" alt="UMAP of microglia cells colored by Leiden cluster" loading="lazy"></div>
         <div class="body"><span class="no">04</span><h3>Single-Cell Alzheimer's Analysis</h3><span class="org">Bioinformatics@GT</span>
           <p class="hook">A Python pipeline that groups brain cells by gene activity and found an Alzheimer's-linked immune cell state.</p>
           <ul class="chips"><li>Research</li><li>Machine learning</li></ul></div></a></li>
       <li class="card" data-cat="software"><a href="#finding-george">
-        <div class="thumb"><img src="assets/george-crowd.webp" alt="Pixel crowd of faces in which George hides" loading="lazy"></div>
+        <div class="thumb"><img src="george-crowd.webp" alt="Pixel crowd of faces in which George hides" loading="lazy"></div>
         <div class="body"><span class="no">05</span><h3>Search Algorithm: Finding George</h3><span class="org">ECE 2035</span>
           <p class="hook">Finds one face in a pixel crowd. Written in C, then optimized to 129 RISC-V instructions.</p>
           <ul class="chips"><li>Algorithm</li></ul></div></a></li>
       <li class="card" data-cat="hardware"><a href="#posture">
-        <div class="thumb"><img src="assets/posture-device.webp" alt="Posture prototype: Arduino and breadboard taped into a blue housing" loading="lazy"></div>
+        <div class="thumb"><img src="posture-device.webp" alt="Posture prototype: Arduino and breadboard taped into a blue housing" loading="lazy"></div>
         <div class="body"><span class="no">06</span><h3>Posture Correction Wearable</h3><span class="org">GT Medical Robotics</span>
           <p class="hook">An IMU prototype that buzzes when you slouch past a set angle. I designed the circuit.</p>
           <ul class="chips"><li>Hardware</li></ul></div></a></li>
@@ -430,7 +430,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
       <div class="stack">
         <div><div class="stack-scroll">
           <div class="stack-canvas" id="stack">
-            <img src="assets/usv-stack.svg" alt="Software stack: camera, Rock 5T computer, Wi-Fi gateways, 4G and Tailscale links, and the ground station" width="1440" height="640">
+            <img src="usv-stack.svg" alt="Software stack: camera, Rock 5T computer, Wi-Fi gateways, 4G and Tailscale links, and the ground station" width="1440" height="640">
           </div>
         </div><p class="cap swipe">Scroll sideways to see the whole stack.</p></div>
         <div class="panel" id="stack-panel" aria-live="polite"></div>
@@ -448,7 +448,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
     <section class="sec">
       <header><h2 class="tape">Hardware</h2></header>
       <div class="split wide-left">
-        <figure class="fig"><a class="zoom" href="assets/usv-circuit-box.webp" data-cap="The waterproof circuit box I made"><img src="assets/usv-circuit-box.webp" alt="Open waterproof enclosure with the Rock 5T, wiring, connectors and cable glands" loading="lazy"></a>
+        <figure class="fig"><a class="zoom" href="usv-circuit-box.webp" data-cap="The waterproof circuit box I made"><img src="usv-circuit-box.webp" alt="Open waterproof enclosure with the Rock 5T, wiring, connectors and cable glands" loading="lazy"></a>
           <figcaption>Circuit box I made. The 3D-printed processor holder (CAD below) is bolted into place inside.</figcaption></figure>
         <div class="prose">
           <h3 style="margin:0 0 10px;font:italic 800 1.3rem/1.1 var(--display);color:var(--ink)">Physical skills</h3>
@@ -456,16 +456,16 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
         </div>
       </div>
       <div class="cad">
-        <figure class="fig"><a class="zoom" href="assets/usv-cad-gps.webp" data-cap="CAD: GPS mount"><div class="ground"><img src="assets/usv-cad-gps.webp" alt="CAD render of the GPS mount" loading="lazy"></div></a><figcaption>CAD: GPS mount</figcaption></figure>
-        <figure class="fig"><a class="zoom" href="assets/usv-cad-board.webp" data-cap="CAD: processor holder"><div class="ground"><img src="assets/usv-cad-board.webp" alt="CAD render of the processor holder" loading="lazy"></div></a><figcaption>CAD: processor holder, later 3D printed</figcaption></figure>
+        <figure class="fig"><a class="zoom" href="usv-cad-gps.webp" data-cap="CAD: GPS mount"><div class="ground"><img src="usv-cad-gps.webp" alt="CAD render of the GPS mount" loading="lazy"></div></a><figcaption>CAD: GPS mount</figcaption></figure>
+        <figure class="fig"><a class="zoom" href="usv-cad-board.webp" data-cap="CAD: processor holder"><div class="ground"><img src="usv-cad-board.webp" alt="CAD render of the processor holder" loading="lazy"></div></a><figcaption>CAD: processor holder, later 3D printed</figcaption></figure>
       </div>
     </section>
 
     <section class="sec">
       <header><h2 class="tape">Prototype mount</h2><p>I designed and assembled it.</p></header>
       <div class="mount">
-        <figure><a class="zoom ground" href="assets/usv-mockup.webp" data-cap="Exploded mockup of the sensor mount"><img src="assets/usv-mockup.webp" alt="Exploded render of the mount: Wi-Fi antenna, gateway, LIDAR, plates, posts, dome camera, GPS and waterproof box" loading="lazy"></a><span class="hand">*Mockup</span></figure>
-        <figure class="photo"><a class="zoom" href="assets/usv-built.webp" data-cap="The mount as built, with 3D-printed parts"><img src="assets/usv-built.webp" alt="The assembled mount on the boat" loading="lazy"></a><span class="hand r">Actual, with 3D-printed parts</span></figure>
+        <figure><a class="zoom ground" href="usv-mockup.webp" data-cap="Exploded mockup of the sensor mount"><img src="usv-mockup.webp" alt="Exploded render of the mount: Wi-Fi antenna, gateway, LIDAR, plates, posts, dome camera, GPS and waterproof box" loading="lazy"></a><span class="hand">*Mockup</span></figure>
+        <figure class="photo"><a class="zoom" href="usv-built.webp" data-cap="The mount as built, with 3D-printed parts"><img src="usv-built.webp" alt="The assembled mount on the boat" loading="lazy"></a><span class="hand r">Actual, with 3D-printed parts</span></figure>
       </div>
     </section>
 
@@ -506,7 +506,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
 
     <section class="sec">
       <header><h2 class="tape">How it works</h2><p>From wristband to dashboard.</p></header>
-      <div class="wide-scroll"><a class="zoom" href="assets/risk-how-it-works.webp" data-cap="How it works, end to end"><div class="ground" style="background:var(--paper-deep);padding:10px"><img src="assets/risk-how-it-works.webp" alt="Pipeline: Empatica wristband, AWS S3, poller, prediction server, frustration and mental demand outputs, dashboard" loading="lazy"></div></a></div>
+      <div class="wide-scroll"><a class="zoom" href="risk-how-it-works.webp" data-cap="How it works, end to end"><div class="ground" style="background:var(--paper-deep);padding:10px"><img src="risk-how-it-works.webp" alt="Pipeline: Empatica wristband, AWS S3, poller, prediction server, frustration and mental demand outputs, dashboard" loading="lazy"></div></a></div>
       <p class="callout">The prediction server is where the models I trained run. They were trained on filtered and normalized data from participants.</p>
     </section>
 
@@ -521,12 +521,12 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
           <ul class="bars" id="cm-bars"></ul>
         </div>
       </div>
-      <figure class="fig" style="max-width:420px"><a class="zoom" href="assets/risk-rf-report.webp" data-cap="Random Forest classification report"><div class="ground"><img src="assets/risk-rf-report.webp" alt="Random Forest classification report with precision, recall and F1 per class" loading="lazy"></div></a><figcaption>Random Forest classification report (best, about 91% for both targets)</figcaption></figure>
+      <figure class="fig" style="max-width:420px"><a class="zoom" href="risk-rf-report.webp" data-cap="Random Forest classification report"><div class="ground"><img src="risk-rf-report.webp" alt="Random Forest classification report with precision, recall and F1 per class" loading="lazy"></div></a><figcaption>Random Forest classification report (best, about 91% for both targets)</figcaption></figure>
     </section>
 
     <section class="sec">
       <header><h2 class="tape">Dashboard</h2></header>
-      <figure class="fig"><a class="zoom" href="assets/risk-dashboard.webp" data-cap="Supervisor dashboard"><img src="assets/risk-dashboard.webp" alt="Dashboard showing an overview of the working force and a list of active workers with their predicted levels" loading="lazy" style="width:100%"></a>
+      <figure class="fig"><a class="zoom" href="risk-dashboard.webp" data-cap="Supervisor dashboard"><img src="risk-dashboard.webp" alt="Dashboard showing an overview of the working force and a list of active workers with their predicted levels" loading="lazy" style="width:100%"></a>
         <figcaption>What supervisors see: the working force at a glance and each worker's live readings.</figcaption></figure>
     </section>
 
@@ -575,23 +575,23 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
         <button type="button" role="tab" aria-selected="false" aria-controls="plan-db" id="t-plan-db">Database design</button>
       </div>
       <div class="planpane" role="tabpanel" id="plan-arch" aria-labelledby="t-plan-arch">
-        <figure class="fig"><a class="zoom" href="assets/glowin-architecture.webp" data-cap="Overall architecture"><div class="ground"><img src="assets/glowin-architecture.webp" alt="Architecture: iOS app sends HTTP requests through ngrok to the Vapor server in Docker, which talks to PostgreSQL on Azure and the Edamam API" loading="lazy"></div></a>
+        <figure class="fig"><a class="zoom" href="glowin-architecture.webp" data-cap="Overall architecture"><div class="ground"><img src="glowin-architecture.webp" alt="Architecture: iOS app sends HTTP requests through ngrok to the Vapor server in Docker, which talks to PostgreSQL on Azure and the Edamam API" loading="lazy"></div></a>
         <figcaption>SwiftUI frontend, Vapor server in Docker, PostgreSQL on Azure, Edamam for recipes.</figcaption></figure>
       </div>
       <div class="planpane" role="tabpanel" id="plan-flow" aria-labelledby="t-plan-flow" hidden>
         <p class="prose" style="margin:0 0 12px">Creating these diagrams informed user navigation and helped implement error checks.</p>
         <div class="flows">
-          <a class="zoom" href="assets/glowin-flow-1.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-1.webp" alt="Program flowchart" loading="lazy"></div></a>
-          <a class="zoom" href="assets/glowin-flow-2.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-2.webp" alt="Program flowchart" loading="lazy"></div></a>
-          <a class="zoom" href="assets/glowin-flow-3.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-3.webp" alt="Program flowchart" loading="lazy"></div></a>
-          <a class="zoom" href="assets/glowin-flow-4.webp" data-cap="Program flow"><div class="ground"><img src="assets/glowin-flow-4.webp" alt="Program flowchart" loading="lazy"></div></a>
+          <a class="zoom" href="glowin-flow-1.webp" data-cap="Program flow"><div class="ground"><img src="glowin-flow-1.webp" alt="Program flowchart" loading="lazy"></div></a>
+          <a class="zoom" href="glowin-flow-2.webp" data-cap="Program flow"><div class="ground"><img src="glowin-flow-2.webp" alt="Program flowchart" loading="lazy"></div></a>
+          <a class="zoom" href="glowin-flow-3.webp" data-cap="Program flow"><div class="ground"><img src="glowin-flow-3.webp" alt="Program flowchart" loading="lazy"></div></a>
+          <a class="zoom" href="glowin-flow-4.webp" data-cap="Program flow"><div class="ground"><img src="glowin-flow-4.webp" alt="Program flowchart" loading="lazy"></div></a>
         </div>
       </div>
       <div class="planpane" role="tabpanel" id="plan-db" aria-labelledby="t-plan-db" hidden>
-        <figure class="fig"><a class="zoom" href="assets/glowin-db.webp" data-cap="Database design"><div class="ground"><img src="assets/glowin-db.webp" alt="Database schema: users, user tokens, generated goals and measurements tables" loading="lazy"></div></a></figure>
+        <figure class="fig"><a class="zoom" href="glowin-db.webp" data-cap="Database design"><div class="ground"><img src="glowin-db.webp" alt="Database schema: users, user tokens, generated goals and measurements tables" loading="lazy"></div></a></figure>
         <div class="ngrok" style="margin-top:18px">
           <div class="labels"><span class="hand">Ngrok requests</span><span class="hand">SQL backend</span></div>
-          <a class="zoom" href="assets/glowin-ngrok-sql.webp" data-cap="Ngrok request log and the SQL backend"><img src="assets/glowin-ngrok-sql.webp" alt="Terminal with ngrok request log next to a SQL client showing the users table" loading="lazy" style="width:100%"></a>
+          <a class="zoom" href="glowin-ngrok-sql.webp" data-cap="Ngrok request log and the SQL backend"><img src="glowin-ngrok-sql.webp" alt="Terminal with ngrok request log next to a SQL client showing the users table" loading="lazy" style="width:100%"></a>
         </div>
       </div>
     </section>
@@ -604,13 +604,13 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
         <button class="btn ghost" type="button" data-jump="ph-workout">Workouts</button>
       </div>
       <ul class="phones" id="phones" tabindex="0" aria-label="App screens">
-        <li id="ph-recipes"><span class="grp">Recipes</span><img src="assets/app-fetching.webp" alt="Recipes screen while fetching from the API" loading="lazy"><span class="hand">Fetching API</span></li>
-        <li><span class="grp">Recipes</span><img src="assets/app-recipes-search.webp" alt="Recipe search results" loading="lazy"><span class="hand">Search</span></li>
-        <li><span class="grp">Recipes</span><img src="assets/app-recipes.webp" alt="List of recipes with calories and servings" loading="lazy"><span class="hand">Recipes fetched through the API change with the current goal and input</span></li>
-        <li id="ph-home"><span class="grp">Homepage</span><img src="assets/app-home.webp" alt="Homepage with current stats, recommended goals and buttons for recipes, workouts and statistics" loading="lazy"><span class="hand">Homepage</span></li>
-        <li><span class="grp">Homepage</span><img src="assets/app-measurements.webp" alt="Input measurements form" loading="lazy"><span class="hand">Input measurements</span></li>
-        <li id="ph-workout"><span class="grp">Workouts</span><img src="assets/app-workout.webp" alt="Day 1 upper body workout list" loading="lazy"><span class="hand">Generated workout</span></li>
-        <li><span class="grp">Workouts</span><img src="assets/app-api-get.webp" alt="Exercise detail with an animated demonstration from the API" loading="lazy"><span class="hand">API GET</span></li>
+        <li id="ph-recipes"><span class="grp">Recipes</span><img src="app-fetching.webp" alt="Recipes screen while fetching from the API" loading="lazy"><span class="hand">Fetching API</span></li>
+        <li><span class="grp">Recipes</span><img src="app-recipes-search.webp" alt="Recipe search results" loading="lazy"><span class="hand">Search</span></li>
+        <li><span class="grp">Recipes</span><img src="app-recipes.webp" alt="List of recipes with calories and servings" loading="lazy"><span class="hand">Recipes fetched through the API change with the current goal and input</span></li>
+        <li id="ph-home"><span class="grp">Homepage</span><img src="app-home.webp" alt="Homepage with current stats, recommended goals and buttons for recipes, workouts and statistics" loading="lazy"><span class="hand">Homepage</span></li>
+        <li><span class="grp">Homepage</span><img src="app-measurements.webp" alt="Input measurements form" loading="lazy"><span class="hand">Input measurements</span></li>
+        <li id="ph-workout"><span class="grp">Workouts</span><img src="app-workout.webp" alt="Day 1 upper body workout list" loading="lazy"><span class="hand">Generated workout</span></li>
+        <li><span class="grp">Workouts</span><img src="app-api-get.webp" alt="Exercise detail with an animated demonstration from the API" loading="lazy"><span class="hand">API GET</span></li>
       </ul>
       <div class="repo-cta">
         <div>
@@ -663,8 +663,8 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
     <section class="sec">
       <header><h2 class="tape part">Part 1: Human brain tissue</h2><p>Could I group the cells at all?</p></header>
       <div class="violins">
-        <figure class="fig"><a class="zoom ground" href="assets/cell-types.webp" data-cap="Genes detected per cell, by cell type"><img src="assets/cell-types.webp" alt="Violin plot of genes detected per cell for each cell type" loading="lazy"></a><figcaption><b style="color:var(--chalk)">Every major cell type.</b> Genes detected per cell, by cell type.</figcaption></figure>
-        <figure class="fig"><a class="zoom ground" href="assets/cell-ad-vs-control.webp" data-cap="Genes detected per cell, Alzheimer's vs control"><img src="assets/cell-ad-vs-control.webp" alt="Violin plot comparing genes detected per cell in Alzheimer's and control samples" loading="lazy"></a><figcaption><b style="color:var(--chalk)">Alzheimer's vs. control.</b> Genes detected per cell, by condition.</figcaption></figure>
+        <figure class="fig"><a class="zoom ground" href="cell-types.webp" data-cap="Genes detected per cell, by cell type"><img src="cell-types.webp" alt="Violin plot of genes detected per cell for each cell type" loading="lazy"></a><figcaption><b style="color:var(--chalk)">Every major cell type.</b> Genes detected per cell, by cell type.</figcaption></figure>
+        <figure class="fig"><a class="zoom ground" href="cell-ad-vs-control.webp" data-cap="Genes detected per cell, Alzheimer's vs control"><img src="cell-ad-vs-control.webp" alt="Violin plot comparing genes detected per cell in Alzheimer's and control samples" loading="lazy"></a><figcaption><b style="color:var(--chalk)">Alzheimer's vs. control.</b> Genes detected per cell, by condition.</figcaption></figure>
         <div class="result prose"><p><b style="color:var(--tape)">Result:</b> the pipeline recovered all six major cell types: neurons, astrocytes, oligodendrocytes and their precursors, microglia and endothelial cells. Cells from Alzheimer's brains showed fewer detected genes on average, a difference that could reflect the disease or tissue quality, which I'd have to separate before drawing conclusions.</p></div>
       </div>
     </section>
@@ -679,18 +679,18 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
         <button type="button" role="tab" aria-selected="true" aria-controls="m-leiden" id="t-m-leiden">Leiden</button>
       </div>
       <div class="methods" role="tabpanel" id="m-kmeans" aria-labelledby="t-m-kmeans" hidden>
-        <a class="zoom ground" href="assets/cell-kmeans.webp" data-cap="K-Means clusters"><img src="assets/cell-kmeans.webp" alt="UMAP colored by five K-Means clusters, most cells in one cluster" loading="lazy"></a>
+        <a class="zoom ground" href="cell-kmeans.webp" data-cap="K-Means clusters"><img src="cell-kmeans.webp" alt="UMAP colored by five K-Means clusters, most cells in one cluster" loading="lazy"></a>
         <div><h3>K-Means</h3><p>Assumes round, equal-sized groups. With k = 5 from an elbow plot, it lumped most cells into one cluster.</p></div>
       </div>
       <div class="methods" role="tabpanel" id="m-louvain" aria-labelledby="t-m-louvain" hidden>
-        <a class="zoom ground" href="assets/cell-louvain.webp" data-cap="Louvain clusters"><img src="assets/cell-louvain.webp" alt="UMAP colored by 15 Louvain clusters" loading="lazy"></a>
+        <a class="zoom ground" href="cell-louvain.webp" data-cap="Louvain clusters"><img src="cell-louvain.webp" alt="UMAP colored by 15 Louvain clusters" loading="lazy"></a>
         <div><h3>Louvain</h3><p>Links each cell to its 15 nearest neighbors and finds connected communities: 15 clusters.</p></div>
       </div>
       <div class="methods" role="tabpanel" id="m-leiden" aria-labelledby="t-m-leiden">
-        <a class="zoom ground" href="assets/cell-leiden.webp" data-cap="Leiden clusters"><img src="assets/cell-leiden.webp" alt="UMAP colored by 14 Leiden clusters" loading="lazy"></a>
+        <a class="zoom ground" href="cell-leiden.webp" data-cap="Leiden clusters"><img src="cell-leiden.webp" alt="UMAP colored by 14 Leiden clusters" loading="lazy"></a>
         <div><h3>Leiden</h3><p>Refines Louvain so every community stays well connected: 14 clusters.</p><p class="used">Used for the final analysis</p></div>
       </div>
-      <figure class="fig"><a class="zoom ground" href="assets/cell-states.webp" data-cap="Microglia by cell state, genotype and age"><img src="assets/cell-states.webp" alt="Three UMAPs colored by cell state, genotype and age" loading="lazy"></a>
+      <figure class="fig"><a class="zoom ground" href="cell-states.webp" data-cap="Microglia by cell state, genotype and age"><img src="cell-states.webp" alt="Three UMAPs colored by cell state, genotype and age" loading="lazy"></a>
         <figcaption>Each dot is one microglia cell; nearby dots have similar gene activity. Colored by cell state, genotype and age.</figcaption></figure>
     </section>
 
@@ -736,7 +736,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
     <section class="sec">
       <header><h2 class="tape">Approach</h2><p>Four steps, in order, on an example crowd.</p></header>
       <div class="george">
-        <figure class="fig"><a class="zoom ground" href="assets/george-crowd.webp" data-cap="Example crowd"><img src="assets/george-crowd.webp" alt="Example pixel crowd with several look-alike faces" loading="lazy" style="image-rendering:pixelated;width:100%"></a><figcaption>Finding George (example crowd)</figcaption></figure>
+        <figure class="fig"><a class="zoom ground" href="george-crowd.webp" data-cap="Example crowd"><img src="george-crowd.webp" alt="Example pixel crowd with several look-alike faces" loading="lazy" style="image-rendering:pixelated;width:100%"></a><figcaption>Finding George (example crowd)</figcaption></figure>
         <ol class="seq" style="padding:0;margin:0">
           <li><span class="n">1</span><b>Scan sparsely</b><p>Every face is at least 12 pixels tall, so checking every 12th row is enough to land in a face without missing any.</p></li>
           <li><span class="n">2</span><b>Walk to the leftmost edge</b><p>Iterate left and up until you hit a background color. This is the start of a hat or brim.</p></li>
@@ -789,7 +789,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
     <section class="sec">
       <header><h2 class="tape">Hardware</h2><p>Click a component to highlight it on the circuit diagram below.</p></header>
       <div class="posture">
-        <figure class="fig photo"><a class="zoom" href="assets/posture-device.webp" data-cap="The prototype"><img src="assets/posture-device.webp" alt="Hand holding the prototype: Arduino Uno and breadboard in a taped blue housing" loading="lazy"></a></figure>
+        <figure class="fig photo"><a class="zoom" href="posture-device.webp" data-cap="The prototype"><img src="posture-device.webp" alt="Hand holding the prototype: Arduino Uno and breadboard in a taped blue housing" loading="lazy"></a></figure>
         <div class="parts">
           <h3>Components I used</h3>
           <ul id="parts">
@@ -807,7 +807,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
     <section class="sec" id="circuit">
       <header><h2 class="tape">Circuit design</h2></header>
       <div class="schem" id="schem">
-        <img src="assets/posture-schematic.webp" alt="Schematic: Arduino Uno connected to the IMU over I2C; pin D9 drives an NPN transistor through a 1k base resistor to switch the vibration motor, with a flyback diode across the motor" loading="lazy" width="1967" height="1168">
+        <img src="posture-schematic.webp" alt="Schematic: Arduino Uno connected to the IMU over I2C; pin D9 drives an NPN transistor through a 1k base resistor to switch the vibration motor, with a flyback diode across the motor" loading="lazy" width="1967" height="1168">
         <div class="zone" data-zone="uno" style="left:11%;top:12%;width:22%;height:47%"><span>Arduino Uno</span></div>
         <div class="zone" data-zone="imu" style="left:71%;top:12%;width:21.5%;height:41%"><span>MPU-6050 IMU</span></div>
         <div class="zone" data-zone="motor" style="left:45%;top:55%;width:18%;height:10%"><span>Vibration motor</span></div>
@@ -829,7 +829,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; fl
 <footer class="foot">
   <div class="wrap">
     <span>Ayaan Monappa, B.S. Computer Engineering, Georgia Institute of Technology</span>
-    <span><a href="assets/Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume</a> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/ayaan-monappa-2b86782ab/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; <a href="https://github.com/ayaanmonappa" target="_blank" rel="noopener">GitHub</a></span>
+    <span><a href="Ayaan_Monappa_Resume.pdf" target="_blank" rel="noopener">Resume</a> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/ayaan-monappa-2b86782ab/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; <a href="https://github.com/ayaanmonappa" target="_blank" rel="noopener">GitHub</a></span>
   </div>
 </footer>
 
